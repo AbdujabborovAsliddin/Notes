@@ -1,8 +1,10 @@
 <?php
-use Core\Database;
 $errors=[];
-$config=require base_path("config.php");
-$db = new Database($config['database']);
+use Core\App;
+use Core\Database;
+
+
+$db=APP::resolve('Core\Database');
 
 $user_id=Database::CURRENT_USER;
 $notes=$db->query('select * from notes where user_id= :user_id',[
@@ -17,12 +19,6 @@ if(empty($notes)){
 $user_name=$db->query('select name from users where id= :id',[
     'id'=>$user_id
 ])->findOrFail();
-
-
-
-
-
-
 
 
 view("notes/index.view.php", [

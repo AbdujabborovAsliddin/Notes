@@ -5,7 +5,7 @@ use PDO;
 
 class Database
 {   
-    const CURRENT_USER=1;
+    const CURRENT_USER=2;
     public $connection;
     public $statement;
     public function __construct($config)
